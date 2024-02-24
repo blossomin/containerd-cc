@@ -23,7 +23,7 @@ ROOTDIR=$(dir $(abspath $(lastword $(MAKEFILE_LIST))))
 # Base path used to install.
 # The files will be installed under `$(DESTDIR)/$(PREFIX)`.
 # The convention of `DESTDIR` was changed in containerd v1.6.
-PREFIX        ?= /usr/local
+PREFIX        ?= /usr/
 DATADIR       ?= $(PREFIX)/share
 MANDIR        ?= $(DATADIR)/man
 
