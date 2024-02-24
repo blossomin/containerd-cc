@@ -394,8 +394,8 @@ func (m *Mount) mountWithHelper(helperBinary, typePrefix, target string) error {
 	// target: "/foo/merged"
 	// m.Type: "fuse3.fuse-overlayfs"
 	// command: "mount.fuse3 overlay /foo/merged -o lowerdir=/foo/lower2:/foo/lower1,upperdir=/foo/upper,workdir=/foo/work -t fuse-overlayfs"
+	m.Options = append(m.Options, "loop")
 	args := []string{m.Source, target}
-	args = append(args, "-o", "loop")
 	for _, o := range m.Options {
 		args = append(args, "-o", o)
 	}
