@@ -609,6 +609,7 @@ func (s *snapshotter) Commit(ctx context.Context, name, key string, opts ...snap
 		// risk of the committed keys becoming out of sync. If this operation
 		// succeed and the overall transaction fails then the risk of out of
 		// sync data is higher and may require manual cleanup.
+		log.G(ctx).WithField("snapshotter", s.name).WithField("namekey", nameKey).WithField("bkey", bkey).WithField("inheritedOpt", inheritedOpt).Debug("committing snapshot")
 		if err := s.Snapshotter.Commit(ctx, nameKey, bkey, inheritedOpt); err != nil {
 			if errdefs.IsNotFound(err) {
 				log.G(ctx).WithField("snapshotter", s.name).WithField("key", key).WithError(err).Error("uncommittable snapshot: missing in backend, snapshot should be removed")

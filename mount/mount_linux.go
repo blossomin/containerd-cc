@@ -394,6 +394,7 @@ func (m *Mount) mountWithHelper(helperBinary, typePrefix, target string) error {
 	// target: "/foo/merged"
 	// m.Type: "fuse3.fuse-overlayfs"
 	// command: "mount.fuse3 overlay /foo/merged -o lowerdir=/foo/lower2:/foo/lower1,upperdir=/foo/upper,workdir=/foo/work -t fuse-overlayfs"
+
 	args := []string{m.Source, target}
 	for _, o := range m.Options {
 		args = append(args, "-o", o)
@@ -415,7 +416,7 @@ func (m *Mount) mountWithHelper(helperBinary, typePrefix, target string) error {
 			return nil
 		}
 		if !errors.Is(err, unix.ECHILD) {
-			return fmt.Errorf("mount helper [%s %v] failed: %q: %w", helperBinary, args, string(out), err)
+			return fmt.Errorf("mount helper here [%s %v] failed: %q: %w", helperBinary, args, string(out), err)
 		}
 		// We got ECHILD, we are not sure whether the mount was successful.
 		// If the mount ID has changed, we are sure we got some new mount, but still not sure it is fully completed.

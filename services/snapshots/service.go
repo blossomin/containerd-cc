@@ -133,6 +133,8 @@ func (s *service) Mounts(ctx context.Context, mr *snapshotsapi.MountsRequest) (*
 	}
 
 	mounts, err := sn.Mounts(ctx, mr.Key)
+	log.G(ctx).WithField("mounts", mounts).WithField("err", err).Debugf("sn mount result")
+	log.G(ctx).WithField("type", mounts[0].Source).WithField("target", mounts[0].Target).Debugf("sn mount result")
 	if err != nil {
 		return nil, errdefs.ToGRPC(err)
 	}

@@ -82,6 +82,7 @@ func (p *proxySnapshotter) Usage(ctx context.Context, key string) (snapshots.Usa
 }
 
 func (p *proxySnapshotter) Mounts(ctx context.Context, key string) ([]mount.Mount, error) {
+	
 	resp, err := p.client.Mounts(ctx, &snapshotsapi.MountsRequest{
 		Snapshotter: p.snapshotterName,
 		Key:         key,
